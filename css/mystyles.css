@@ -1,0 +1,26 @@
+
+.bg-primary{
+    background-color: indianred;
+}
+.text-primary{
+    color:rgb(225, 193, 144);
+    font-family: fantasy;
+}
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
+    color:rgb(225, 193, 144)
+}
+p.lead{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1{
+    font-family:fantasy
+}
+a{
+    color:rgb(222, 138, 138)
+}
+.flex-shrink-0{
+    font-family: 'Times New Roman', Times, serif;
+}
+.dates{
+    font-size: larger;
+}

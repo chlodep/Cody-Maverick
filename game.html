@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Which Surf's Up Character Are You?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #87CEEB;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2E8B57;
+        }
+
+        .quiz-container {
+            background: #FFF;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .answers button {
+            background: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .answers button:hover {
+            background: #1C5B3F;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #2E8B57;
+            text-align: center; /* Center text in results section */
+        }
+
+        #result img {
+            max-width: 200px;
+            height: auto;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto; /* Center the image horizontally */
+        }
+
+        #play-again {
+            margin-top: 20px;
+            background: #2E8B57;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #play-again:hover {
+            background: #1C5B3F;
+        }
+    </style>
+</head>
+<body>
+    <h1>Which Surf's Up Character Are You?</h1>
+    <div class="quiz-container">
+        <div id="quiz">
+            <div class="question" id="question">
+                <img id="question-image" src="" alt="" style="display: none;">
+                Loading question...
+            </div>
+            <div class="answers" id="answers"></div>
+        </div>
+        <div id="result" style="display: none;">
+            <div id="result-text"></div>
+            <img id="result-image" src="" alt="Character Image" style="display: none;">
+            <button id="play-again" onclick="resetQuiz()">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What’s your approach to a surf competition?",
+                answers: [
+                    { text: "Nothing can get in the way of my victory", character: "Tank" },
+                    { text: "I like to have fun and enjoy the ride, win or lose.", character: "Chicken Joe" },
+                    { text: "I prefer to keep things low-key and just relax.", character: "Lani" },
+                    { text: "I’m focused on improving myself and proving my skills.", character: "Cody" }
+                ]
+            },
+            {
+                question: "How do you feel about making new friends?",
+                answers: [
+                    { text: "I love meeting new pals", character: "Chicken Joe" },
+                    { text: "I take my time but am loyal to those who matter.", character: "Lani" },
+                    { text: "I’m not too worried about friendships; I go with the flow.", character: "Cody" },
+                    { text: "I don't need any friends as long as I got my Ladies", character: "Tank" }
+                ]
+            },
+            {
+                question: "What’s your idea of a perfect day?",
+                answers: [
+                    { text: "Shredding the biggest waves and feeling the rush.", character: "Cody" },
+                    { text: "Kicking back with a smoothie on the beach and relaxing.", character: "Lani" },
+                    { text: "Hanging out with friends and having a good time.", character: "Chicken Joe" },
+                    { text: "Flexing on everyone so they know I'm the best", character: "Tank" }
+                ]
+            },
+            {
+                question: "How do you react to criticism?",
+                answers: [
+                    { text: "No one has the authority to criticize me cause I'm the greatest", character: "Tank" },
+                    { text: "I listen and try to improve, but I stay true to myself.", character: "Lani" },
+                    { text: "I’m not bothered by it much; I just keep going with the flow.", character: "Chicken Joe" },
+                    { text: "I get fired up and use it as motivation to be better.", character: "Cody" }
+                ]
+            },
+            {
+                question: "How do you approach challenges?",
+                answers: [
+                    { text: "Nothing is a challenge for me.", character: "Tank" },
+                    { text: "I stay calm, think things through, and find a peaceful way to tackle them.", character: "Lani" },
+                    { text: "I go with the flow and don’t stress too much about obstacles.", character: "Chicken Joe" },
+                    { text: "I give it my all, determined to prove I can handle anything.", character: "Cody" }
+                ]
+            },
+            {
+                question: "What’s your idea of fun?",
+                answers: [
+                    { text: "Catching the biggest waves and doing tricks.", character: "Cody" },
+                    { text: "Going volcano boarding!", character: "Lani" },
+                    { text: "Hanging with friends and having a good laugh.", character: "Chicken Joe" },
+                    { text: "Basking in my glory", character: "Tank" }
+                ]
+            },
+            {
+                question: "How would you describe your personality?",
+                answers: [
+                    { text: "Bold, confident, and daring.", character: "Tank" },
+                    { text: "Laid-back and chill, always relaxed.", character: "Lani" },
+                    { text: "Easygoing and fun-loving.", character: "Chicken Joe" },
+                    { text: "Competitive and focused on being the best.", character: "Cody" }
+                ]
+            },
+            {
+                question: "What’s your favorite type of food?",
+                answers: [
+                    { text: "Squid kebabs.", character: "Chicken Joe" },
+                    { text: "A fresh smoothie or tropical fruit salad.", character: "Lani" },
+                    { text: "Fish Tacos", character: "Cody" },
+                    { text: "A huge steak", character: "Tank" }
+                ]
+            },
+            {
+                question: "How do you handle success?",
+                answers: [
+                    { text: "Winning is the only thing that matters.Ever.", character: "Tank" },
+                    { text: "I’m humble about it and share the joy with others.", character: "Lani" },
+                    { text: "I’m just happy to be along for the ride.", character: "Chicken Joe" },
+                    { text: "I celebrate it but always want more.", character: "Cody" }
+                ]
+            },
+            {
+                question: "What’s your biggest fear?",
+                answers: [
+                    { text: "I'm not afraid of anything, but if I have to say, probably losing.", character: "Tank" },
+                    { text: "Not being able to live in the moment and enjoy life.", character: "Lani" },
+                    { text: "Not being able to relax and have fun.", character: "Chicken Joe" },
+                    { text: "Not living up to my potential and letting others down.", character: "Cody" }
+                ]
+            }
+        ];
+
+        const characterImages = {
+            "Chicken Joe": "chickenjoe.jpg",
+            "Lani": "lani.png",
+            "Tank": "tank.jpg",
+            "Cody": "codygame.webp"
+        };
+
+        const characterScores = {};
+        const quizContainer = document.getElementById('quiz');
+        const questionElement = document.getElementById('question');
+        const questionImage = document.getElementById('question-image');
+        const answersElement = document.getElementById('answers');
+        const resultElement = document.getElementById('result');
+        const resultText = document.getElementById('result-text');
+        const resultImage = document.getElementById('result-image');
+
+        let currentQuestionIndex = 0;
+
+        function showQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+
+            if (currentQuestion.image) {
+                questionImage.src = currentQuestion.image;
+                questionImage.style.display = 'block';
+            } else {
+                questionImage.style.display = 'none';
+            }
+
+            answersElement.innerHTML = '';
+
+            currentQuestion.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.textContent = answer.text;
+                button.onclick = () => selectAnswer(answer.character);
+                answersElement.appendChild(button);
+            });
+        }
+
+        function selectAnswer(character) {
+            characterScores[character] = (characterScores[character] || 0) + 1;
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizContainer.style.display = 'none';
+            resultElement.style.display = 'block';
+
+            const topCharacter = Object.keys(characterScores).reduce((a, b) => characterScores[a] > characterScores[b] ? a : b);
+            resultText.textContent = `You are most like ${topCharacter}!`;
+            resultImage.src = characterImages[topCharacter];
+            resultImage.style.display = 'block';
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            Object.keys(characterScores).forEach(key => characterScores[key] = 0);
+            quizContainer.style.display = 'block';
+            resultElement.style.display = 'none';
+            showQuestion();
+        }
+
+        showQuestion();
+    </script>
+    <a href="scratch.html">Back to Cody Page</a>
+</body>
+</html>
+
+
+
+

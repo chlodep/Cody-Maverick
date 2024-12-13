@@ -1,0 +1,108 @@
+h1 {
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(21, 21, 71);
+    font-size:250%;
+}
+
+.video-container {
+    display: flex;
+    justify-content: center; 
+    margin-bottom: 0;
+}
+
+iframe {
+    width: 45%; 
+    max-width: 900px; 
+    aspect-ratio: 16 / 9; 
+    border: none; 
+    display: block;
+    margin: 0 auto;
+}
+
+.quiz-section {
+    margin-top: 5px; 
+    text-align: center; 
+}
+
+.tableauPlaceholder {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto; 
+    text-align: center;
+    margin-top: 5px;
+}
+
+.tableauViz {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; 
+}
+
+body {
+    background-color: lightblue;
+}
+
+.image {
+    width: 400px;
+    height: auto;
+    margin: 3px;
+    border: 2px solid azure;
+}
+
+.list {
+    list-style-position: inside; 
+    margin: 0 auto; 
+    padding: 0; 
+    width: fit-content; 
+    background-color: azure;
+    
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size:larger;
+    color: rgb(21, 21, 71);
+}
+
+
+.resume-link{
+    margin-top: 5px;
+    text-align: center;
+}
+.top-link{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    margin: auto;
+}
+.bottom-link{
+    position: absolute;
+    right: 2px;
+}
+.theone{
+    text-align: center;
+    font-style: italic;
+    color: color: rgb(21, 21, 71);;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    position: relative;
+    margin-bottom: 2px;
+}
+/* .common{
+    position: relative;
+
+    padding: 5px;
+    margin: 5px;
+   
+}
+.bottom{
+    
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    font-style: italic;
+    background-color: darkcyan;
+    font-size:smaller;
+} */
